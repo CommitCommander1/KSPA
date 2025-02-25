@@ -43,7 +43,6 @@ bool YamlPolicyEvaluator::LoadPolicy() {
 
         if (inRulesSection) {
             // Extremely simplified rule parsing (assuming "  - condition: ...")
-            std::cout << "Here";
             size_t conditionPos = line.find("condition:");
             if (conditionPos != std::string::npos) {
                 std::string condition = line.substr(conditionPos + 10); // 10 = length of "condition:" + space

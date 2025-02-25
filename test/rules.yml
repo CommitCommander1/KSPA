@@ -3,7 +3,7 @@ resource_type: Pod
 description: "Ensure Pods do not run privileged containers"
 severity: high
 cis_benchmark_ids: ["CIS 5.2.1"] # Example CIS benchmark mapping
-checks:
+condition:
   - field: spec.containers[].securityContext.privileged # Array access for containers
     operator: equals
     value: false
@@ -15,7 +15,7 @@ description: "Ensure Deployments only use allowed image registries"
 severity: medium
 allowed_registries: ["docker.io", "registry.example.com"] # List of allowed registries
 cis_benchmark_ids: ["CIS 5.3.4"] # Example CIS benchmark mapping
-checks:
+condition:
   - field: spec.template.spec.containers[].image # Array access for containers
     operator: allowed_prefix # Custom operator (you'll need to implement this logic)
     value_from_field: allowed_registries  #  Value comes from the rule's 'allowed_registries' list
@@ -26,7 +26,7 @@ resource_type: Namespace
 description: "Ensure Namespaces have a 'owner' annotation"
 severity: low
 cis_benchmark_ids: [] # No specific CIS mapping for this example
-checks:
+condition:
   - annotation: owner # Check for annotation presence
     operator: exists
     message: "Namespace should have an 'owner' annotation indicating responsible team/person."

@@ -38,7 +38,6 @@ bool YamlPolicyEvaluator::LoadPolicy() {
         // Very basic parsing -- this needs to be MUCH more robust!
         if (line.find("rule_id:") != std::string::npos) {
             inRulesSection = true;
-            std::cout<<"here" <<std::endl;
             continue; // Skip the "rules:" line itself
         }
 
@@ -51,7 +50,8 @@ bool YamlPolicyEvaluator::LoadPolicy() {
                 // Trim whitespace (important!)
                 condition.erase(0, condition.find_first_not_of(" \t"));
                 condition.erase(condition.find_last_not_of(" \t") + 1);
-
+                std::cout << condition << std::endl;
+                std::cout << "##" <<std::endl;
                 Policy::Rule newRule;
                 newRule.condition = condition;
                 policy_.AddRule(newRule);

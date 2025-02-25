@@ -23,7 +23,7 @@ bool YamlPolicyEvaluator::LoadPolicy() {
     catch (const std::exception& e) {
       std::cout << e.what();
     }
-  
+     
     // --- Manual YAML Parsing (Simplified Example) ---
     //  This is where the bulk of your work will be if you're not using a library.
     //  You'll need to read the file line by line, parse the structure, and
@@ -35,6 +35,7 @@ bool YamlPolicyEvaluator::LoadPolicy() {
     bool inRulesSection = false;
 
     while (std::getline(file, line)) {
+      std::cout<< line << std::endl;
         // Very basic parsing -- this needs to be MUCH more robust!
         if (line.find("rules:") != std::string::npos) {
             inRulesSection = true;

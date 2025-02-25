@@ -1,0 +1,36 @@
+rule_id: pod-no-privileged-containers
+resource_type: Pod
+description: "Ensure Pods do not run privileged containers"
+severity: high
+cis_benchmark_ids: ["CIS 5.2.1"] # Example CIS benchmark mapping
+checks:
+  - field: spec.containers[].securityContext.privileged # Array access for containers
+    operator: equals
+    value: false
+    message: "Pod container should not run in privileged mode. Set securityContext.privileged to false."
+---
+rule_id: deployment-allowed-image-registries
+resource_type: Deployment
+description: "Ensure Deployments only use allowed image registries"
+severity: medium
+allowed_registries: ["docker.io", "registry.example.com"] # List of allowed registries
+cis_benchmark_ids: ["CIS 5.3.4"] # Example CIS benchmark mapping
+checks:
+  - field: spec.template.spec.containers[].image # Array access for containers
+    operator: allowed_prefix # Custom operator (you'll need to implement this logic)
+    value_from_field: allowed_registries  #  Value comes from the rule's 'allowed_registries' list
+    message: "Deployment container image registry is not in the allowed list. Only use registries: {{.value_from_rule}}"
+---
+rule_id: namespace-requires-owner-annotation
+resource_type: Namespace
+description: "Ensure Namespaces have a 'owner' annotation"
+severity: low
+cis_benchmark_ids: [] # No specific CIS mapping for this example
+checks:
+  - annotation: owner # Check for annotation presence
+    operator: exists
+    message: "Namespace should have an 'owner' annotation indicating responsible team/person."
+  - annotation: owner # Check annotation value (optional - could be a separate rule)
+    operator: notEquals
+    value: "" # Ensure the annotation value is not empty
+    message: "Namespace 'owner' annotation should have a non-empty value."

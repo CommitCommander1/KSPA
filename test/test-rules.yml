@@ -1,0 +1,5 @@
+rules:
+  - condition: "age=25"
+  - condition: "country=USA"
+  - condition: "is_member = true"
+  - condition: " points> 90"

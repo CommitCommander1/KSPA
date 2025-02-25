@@ -35,10 +35,10 @@ bool YamlPolicyEvaluator::LoadPolicy() {
     bool inRulesSection = false;
 
     while (std::getline(file, line)) {
-      std::cout<< line << std::endl;
         // Very basic parsing -- this needs to be MUCH more robust!
-        if (line.find("rules:") != std::string::npos) {
+        if (line.find("rule_id:") != std::string::npos) {
             inRulesSection = true;
+            std::cout<<"here" <<std::endl;
             continue; // Skip the "rules:" line itself
         }
 

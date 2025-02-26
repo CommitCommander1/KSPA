@@ -40,7 +40,7 @@ bool YamlPolicyEvaluator::LoadPolicy() {
             inRulesSection = true;
             continue; // Skip the "rules:" line itself
         }
-        std::cout << "outside inRulesSection: " << line << std::end;
+        std::cout << "outside inRulesSection: " << line << std::endl;
         if (inRulesSection) {
             // Extremely simplified rule parsing (assuming "  - condition: ...")
             size_t conditionPos = line.find("condition:");

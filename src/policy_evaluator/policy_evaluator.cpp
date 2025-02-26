@@ -46,10 +46,11 @@ bool YamlPolicyEvaluator::LoadPolicy() {
             size_t conditionPos = line.find("condition:");
             if (conditionPos != std::string::npos) {
                 std::string condition = line.substr(conditionPos); // 10 = length of "condition:" + space
+                std::cout << line << std::endl;
                 std::cout << condition.size() << std::endl;
                 std::cout << condition << std::endl;
-                std::cout << "____________" << std::endl;
-                
+                std::cout << "____________" << std::endl<< std::endl;
+   
                 // Trim whitespace (important!)
                 condition.erase(0, condition.find_first_not_of(" \t"));
                 condition.erase(condition.find_last_not_of(" \t") + 1);

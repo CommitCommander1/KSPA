@@ -17,7 +17,8 @@ int main(int argc, char* argv[]) {
             {"is_member", "false"}
         };
         std::cout << "Test Case 1: " << (evaluator.Evaluate(context1) ) << std::endl;
-        logMessage("Main func");
+        logging::Logger main_log("../log/main.log");
+        main_log.logMessage("Main func");
         return 0; // Indicate successful execution
 
     } catch (const std::exception& ex) {

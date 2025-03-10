@@ -11,7 +11,7 @@ enum LogLevel { DEBUG, INFO, WARNING, ERROR, CRITICAL};
 
 class Logger {
 public:
-  Logger(const string& filename);
+  Logger(const std::string& filename);
   ~Logger(){ logFile.close(); };
   void logMessage(const std::string& message);
 private:

@@ -1,4 +1,5 @@
 #include "policy_evaluator/policy_evaluator.h"
+#include "kspa_core/logging.h"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
@@ -6,6 +7,7 @@
 
 namespace policy_evaluator {
 
+kspa_core::logging::Logger policy_eval_log("../log/pe.log");
 YamlPolicyEvaluator::YamlPolicyEvaluator(const std::string& yaml_file_path)
     : yaml_file_path_(yaml_file_path) {
   LoadPolicy(); // Load policy on object creation
@@ -16,14 +18,14 @@ bool YamlPolicyEvaluator::LoadPolicy() {
   try {
       if (!file.is_open()) {
       // Handle file opening error.
-        std::cout << "Error: Could not open file: " << yaml_file_path_ << std::endl;
+        policy_eval_log.logMessage("Could not open file");
         return false; // Or throw an exception  
       }
     }
     catch (const std::exception& e) {
       std::cout << e.what();
     }
-  
+     
     // --- Manual YAML Parsing (Simplified Example) ---
     //  This is where the bulk of your work will be if you're not using a library.
     //  You'll need to read the file line by line, parse the structure, and
@@ -36,21 +38,34 @@ bool YamlPolicyEvaluator::LoadPolicy() {
 
     while (std::getline(file, line)) {
         // Very basic parsing -- this needs to be MUCH more robust!
-        if (line.find("rules:") != std::string::npos) {
+        if (line.find("rule_id:") != std::string::npos) {
             inRulesSection = true;
             continue; // Skip the "rules:" line itself
         }
-
-        if (inRulesSection) {
+        std::cout << "outside inRulesSection: " << line << std::endl;
+        if (!inRulesSection)
+          {
+            std::cerr << "Failed inRulesSection" << std::endl;
+          }
+        else
+          {
             // Extremely simplified rule parsing (assuming "  - condition: ...")
             size_t conditionPos = line.find("condition:");
+            std::cout << "line 1: " << line << std::endl;
             if (conditionPos != std::string::npos) {
-                std::string condition = line.substr(conditionPos + 10); // 10 = length of "condition:" + space
-
+                std::string condition = line.substr(conditionPos); // 10 = length of "condition:" + space
+                std::cout << line << std::endl;
+                std::cout << condition.size() << std::endl;
+                std::cout << condition << std::endl;
+                std::cout << "____________" << std::endl<< std::endl;
+   
                 // Trim whitespace (important!)
                 condition.erase(0, condition.find_first_not_of(" \t"));
                 condition.erase(condition.find_last_not_of(" \t") + 1);
-
+                
+                std::cout << condition.size() << std::endl;
+                std::cout << condition << std::endl;
+                std::cout << "____________" << std::endl;
                 Policy::Rule newRule;
                 newRule.condition = condition;
                 policy_.AddRule(newRule);

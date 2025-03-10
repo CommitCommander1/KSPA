@@ -5,7 +5,7 @@
 
 #include "policy_evaluator/policy_evaluator.h"
 #include "kspa/kspa.h" // 
-//#include "kspa_core/logging.h" // 
+#include "kspa_core/logging.h" // 
 
 
 int main(int argc, char* argv[]) {
@@ -17,7 +17,8 @@ int main(int argc, char* argv[]) {
             {"is_member", "false"}
         };
         std::cout << "Test Case 1: " << (evaluator.Evaluate(context1) ) << std::endl;
-        std::cout << "KSPA execution completed successfully." << std::endl;
+        kspa_core::logging::Logger main_log("../log/main.log");
+        main_log.logMessage("Main func");
         return 0; // Indicate successful execution
 
     } catch (const std::exception& ex) {

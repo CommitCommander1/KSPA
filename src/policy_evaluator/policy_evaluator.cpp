@@ -1,4 +1,5 @@
 #include "policy_evaluator/policy_evaluator.h"
+#include "kspa_core/logging.h"
 #include <fstream>
 #include <sstream>
 #include <stdexcept>

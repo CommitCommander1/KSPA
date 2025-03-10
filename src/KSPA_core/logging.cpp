@@ -4,7 +4,7 @@
 namespace kspa_core {
 namespace logging {
 
-void logMessage(const std::string& message) {
+void Logger::logMessage(const std::string& message) {
   std::cout<< "[KSPA Core Log]: " << message << std::endl;
 }
 }

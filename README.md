@@ -1,5 +1,4 @@
 # KSPA - Kubernetes Security Posture Assessor
-1
 
 A powerful tool for assessing the security posture of Kubernetes clusters based on declarative policies, with support for CIS benchmarks.
 

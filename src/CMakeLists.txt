@@ -15,7 +15,7 @@ target_link_libraries(kspa-app
     KSPA_core # Note: Target name should match project() in src/KSPA_core/CMakeLists.txt
     policy_evaluator # Target name should match project() in src/policy_evaluator/CMakeLists.txt
     policy_parser # Target name should match project() in src/policy_parser/CMakeLists.txt
-    yaml-cppd
+#    yaml-cppd
 )
 
 # Include directories for the executable - primarily the project-level include dir

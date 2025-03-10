@@ -5,10 +5,10 @@ project(src_module) # Or 'project(src)'
 add_subdirectory(KSPA_core) # Note: Corrected directory name to KSPA_core
 add_subdirectory(policy_evaluator)
 add_subdirectory(policy_parser)
-inlude('D:/yaml-cpp/include')
+#inlude('D:/yaml-cpp/include')
 # Create the main executable
 add_executable(kspa-app main.cpp)
-link_directories('D:/yaml-cpp/build/Debug')
+#link_directories('D:/yaml-cpp/build/Debug')
 
 # Link the executable with the libraries
 target_link_libraries(kspa-app

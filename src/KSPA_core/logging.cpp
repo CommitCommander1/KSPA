@@ -14,8 +14,15 @@ void Logger::log(LogLevel level, const std::string& message) {
   time(&timestamp);
   std::cout << ctime(&timestamp);
   // Create Log entry
+  std::ostringstream log_entry;
+  log_entry << Logger::leveltoString(level) << ": " << ctime(&timestamp) << &timestamp << std::endl;
+  std::cout << log_entry.str();
   // output to console
   // output to log file
+    if (logFile.is_open()) {
+      logFile << log_entry.str()
+      logFile.flush();
+  }
 }
 }     
 }

@@ -12,9 +12,9 @@ enum LogLevel { DEBUG, INFO, WARNING, ERROR, CRITICAL};
 
 class Logger {
 public:
-  Logger(const std::string& filename) 
+  Logger(const std::string& filename)
   {
-    logFile.open(filename, ios::app);
+    logFile.open(filename, std::ios::app);
     if (!logFile.is_open()){
       std::cerr << "Error Opening file" << std::endl;
     }
@@ -34,7 +34,7 @@ private:
         return "WARNING";
       case ERROR:
         return "ERROR";
-      case CRITICAL;
+      case CRITICAL:
         return "CRITICAL";
       default:
         return "UNKOWN";

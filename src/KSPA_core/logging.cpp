@@ -20,7 +20,7 @@ void Logger::log(LogLevel level, const std::string& message) {
   // output to console
   // output to log file
     if (logFile.is_open()) {
-      logFile << log_entry.str()
+      logFile << log_entry.str();
       logFile.flush();
   }
 }

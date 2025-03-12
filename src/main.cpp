@@ -22,6 +22,7 @@ int main(int argc, char* argv[]) {
         if (!std::filesystem::exists(log_dir)) {
           std::filesystem::create_directories(log_dir);
     }
+        std::cout << log_file.string()<< std::endl;
         std::cout << "Test Case 1: " << (evaluator.Evaluate(context1) ) << std::endl;
         kspa_core::logging::Logger main_log(log_file.string());
         main_log.log(kspa_core::logging::DEBUG, "Main func");

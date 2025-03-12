@@ -10,7 +10,7 @@
 
 int main(int argc, char* argv[]) {
     try {
-        policy_evaluator::YamlPolicyEvaluator evaluator("../test/rules.yml");
+        policy_evaluator::YamlPolicyEvaluator evaluator("../../test/rules.yml");
         std::map<std::string, std::string> context1 = {
             {"age", "25"},
             {"country", "USA"},

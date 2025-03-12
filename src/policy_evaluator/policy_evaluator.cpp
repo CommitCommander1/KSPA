@@ -7,7 +7,6 @@
 
 namespace policy_evaluator {
 
-kspa_core::logging::Logger policy_eval_log("../log/pe.log");
 YamlPolicyEvaluator::YamlPolicyEvaluator(const std::string& yaml_file_path)
     : yaml_file_path_(yaml_file_path) {
   LoadPolicy(); // Load policy on object creation
@@ -18,7 +17,7 @@ bool YamlPolicyEvaluator::LoadPolicy() {
   try {
       if (!file.is_open()) {
       // Handle file opening error.
-        policy_eval_log.logMessage("Could not open file");
+        std::cout << "Rules files path is off" << std::endl;
         return false; // Or throw an exception  
       }
     }

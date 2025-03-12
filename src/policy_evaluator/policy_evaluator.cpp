@@ -55,7 +55,6 @@ bool YamlPolicyEvaluator::LoadPolicy() {
                 // Trim whitespace (important!)
                 condition.erase(0, condition.find_first_not_of(" \t"));
                 condition.erase(condition.find_last_not_of(" \t") + 1);
-                
                 Policy::Rule newRule;
                 newRule.condition = condition;
                 policy_.AddRule(newRule);
@@ -69,7 +68,6 @@ bool YamlPolicyEvaluator::LoadPolicy() {
 bool YamlPolicyEvaluator::Evaluate(const std::map<std::string, std::string>& context) const {
      // Very basic evaluation logic (highly simplified example):
     // Iterate through the rules and check if *any* rule's condition is met.
-    std::cout << "Test Evaluate()";
     for (const auto& rule : policy_.rules) {
         std::cout << rule;
         if (EvaluateRule(rule, context)) {

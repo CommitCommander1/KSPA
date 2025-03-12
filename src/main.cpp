@@ -17,9 +17,13 @@ int main(int argc, char* argv[]) {
             {"is_member", "false"}
         };
         std::filesystem::path cwd = std::filesystem::current_path();
-        std::cout << cwd.string();
+        std::filesystem::path log_dir = cwd / "log";
+        std::filesystem::path log_file = log_dir / "main.log";
+        if (!std::filesystem::exists(log_dir)) {
+          std::filesystem::create_directories(log_dir);
+    }
         std::cout << "Test Case 1: " << (evaluator.Evaluate(context1) ) << std::endl;
-        kspa_core::logging::Logger main_log("log/main.log");
+        kspa_core::logging::Logger main_log(log_file.string());
         main_log.log(kspa_core::logging::DEBUG, "Main func");
         return 0; // Indicate successful execution
 

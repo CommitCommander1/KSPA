@@ -11,8 +11,8 @@
 int main(int argc, char* argv[]) {
     try {
         std::filesystem::path cwd = std::filesystem::current_path();
-        std::filesystem::path log_dir = cwd / "test";
-        std::filesystem::path log_file = log_dir / "rules.yml";
+        std::filesystem::path rules_dir = cwd / "test";
+        std::filesystem::path rules_file = rules_dir / "rules.yml";
         policy_evaluator::YamlPolicyEvaluator evaluator("../../test/rules.yml");
         std::map<std::string, std::string> context1 = {
             {"age", "25"},

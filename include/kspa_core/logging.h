@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 
 namespace kspa_core {
 namespace logging {
@@ -14,14 +15,10 @@ class Logger {
 public:
   Logger(const std::string& filename)
   {
-    std::cout << filename;
-    try {
-      logFile.open(filename, std::ios::app);
+    logFile.open(filename, std::ios::app);
+    if (!std::filesystem::exists(std::filesystem::path(filename).parent_path())) {
+      std::cerr << "Directory doesnt exist!" << std::endl;
     }
-    catch (const std::exception& ex) {
-      std::cout << ex.what();
-    }
-
     if (!logFile.is_open()){
       std::cerr << "Error Opening logger file" << std::endl;
     }

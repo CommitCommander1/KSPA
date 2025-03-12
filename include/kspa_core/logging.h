@@ -14,7 +14,14 @@ class Logger {
 public:
   Logger(const std::string& filename)
   {
-    logFile.open(filename, std::ios::app);
+    std::cout << filename;
+    try {
+      logFile.open(filename, std::ios::app);
+    }
+    catch (const std::exception& ex) {
+      std::cout << ex.what();
+    }
+
     if (!logFile.is_open()){
       std::cerr << "Error Opening file" << std::endl;
     }

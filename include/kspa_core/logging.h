@@ -23,7 +23,7 @@ public:
     }
 
     if (!logFile.is_open()){
-      std::cerr << "Error Opening file" << std::endl;
+      std::cerr << "Error Opening logger file" << std::endl;
     }
   }
   ~Logger(){ logFile.close();}

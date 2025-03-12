@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
         };
         std::cout << "Test Case 1: " << (evaluator.Evaluate(context1) ) << std::endl;
         kspa_core::logging::Logger main_log("../log/main.log");
-        main_log.logMessage("Main func");
+        main_log.log(kspa_core::logging::DEBUG, "Main func");
         return 0; // Indicate successful execution
 
     } catch (const std::exception& ex) {

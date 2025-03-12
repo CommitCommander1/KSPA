@@ -42,7 +42,6 @@ bool YamlPolicyEvaluator::LoadPolicy() {
             inRulesSection = true;
             continue; // Skip the "rules:" line itself
         }
-        std::cout << "outside inRulesSection: " << line << std::endl;
         if (!inRulesSection)
           {
             std::cerr << "Failed inRulesSection" << std::endl;
@@ -54,18 +53,12 @@ bool YamlPolicyEvaluator::LoadPolicy() {
             std::cout << "line 1: " << line << std::endl;
             if (conditionPos != std::string::npos) {
                 std::string condition = line.substr(conditionPos); // 10 = length of "condition:" + space
-                std::cout << line << std::endl;
-                std::cout << condition.size() << std::endl;
-                std::cout << condition << std::endl;
                 std::cout << "____________" << std::endl<< std::endl;
    
                 // Trim whitespace (important!)
                 condition.erase(0, condition.find_first_not_of(" \t"));
                 condition.erase(condition.find_last_not_of(" \t") + 1);
                 
-                std::cout << condition.size() << std::endl;
-                std::cout << condition << std::endl;
-                std::cout << "____________" << std::endl;
                 Policy::Rule newRule;
                 newRule.condition = condition;
                 policy_.AddRule(newRule);

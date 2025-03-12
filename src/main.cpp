@@ -10,13 +10,15 @@
 
 int main(int argc, char* argv[]) {
     try {
+        std::filesystem::path cwd = std::filesystem::current_path();
+        std::filesystem::path log_dir = cwd / "test";
+        std::filesystem::path log_file = log_dir / "rules.yml";
         policy_evaluator::YamlPolicyEvaluator evaluator("../../test/rules.yml");
         std::map<std::string, std::string> context1 = {
             {"age", "25"},
             {"country", "USA"},
             {"is_member", "false"}
         };
-        std::filesystem::path cwd = std::filesystem::current_path();
         std::filesystem::path log_dir = cwd / "log";
         std::filesystem::path log_file = log_dir / "main.log";
         if (!std::filesystem::exists(log_dir)) {

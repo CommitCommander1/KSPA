@@ -13,16 +13,9 @@ int main(int argc, char* argv[]) {
         struct stat sb;
         std::filesystem::path cwd = std::filesystem::current_path();
         std::filesystem::path rules_dir = cwd / "../test";
-        std::filesystem::path rules_file = rules_dir / "rules.yml";
+        std::filesystem::path rules_file = rules_dir / "test-rules.yml";
         std::cout << cwd.string() << std::endl;
         std::cout << rules_file.string() << std::endl;
-        for (const auto& entry : std::filesystem::directory_iterator(cwd)) {
-          std::filesystem::path out = entry.path();
-          std::string out_str = out.string();
-          const char* path = out_str.c_str();
-          if (stat(path, &sb) == 0 && !(sb.st_mode & S_IFDIR))
-            std::cout<<path<< std::endl;
-    }
         policy_evaluator::YamlPolicyEvaluator evaluator(rules_file.string());
         std::map<std::string, std::string> context1 = {
             {"age", "25"},

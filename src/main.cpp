@@ -6,12 +6,13 @@
 #include "policy_evaluator/policy_evaluator.h"
 #include "kspa/kspa.h" // 
 #include "kspa_core/logging.h" // 
-
+#include <sys/stat.h>
 
 int main(int argc, char* argv[]) {
     try {
+        struct stat sb;
         std::filesystem::path cwd = std::filesystem::current_path();
-        std::filesystem::path rules_dir = cwd / "test";
+        std::filesystem::path rules_dir = cwd / "../test";
         std::filesystem::path rules_file = rules_dir / "rules.yml";
         std::cout << cwd.string() << std::endl;
         std::cout << rules_file.string() << std::endl;
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]) {
             {"country", "USA"},
             {"is_member", "false"}
         };
-        std::filesystem::path log_dir = cwd / "log";
+        std::filesystem::path log_dir = cwd / "../log";
         std::filesystem::path log_file = log_dir / "main.log";
         if (!std::filesystem::exists(log_dir)) {
           std::filesystem::create_directories(log_dir);
